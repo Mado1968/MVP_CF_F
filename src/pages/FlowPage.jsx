@@ -54,6 +54,7 @@ export default function FlowPage() {
   if (card?.done) { navigate('/done'); return null }
   if (card?.node === 'route_d') { navigate('/safety'); return null }
   if (card?.node === 'route_b') { navigate('/safety'); return null }
+  if (card?.node === 'node_8')  { navigate('/done');    return null }
 
   // Node 6 — cas especial: renderitza ProposalCard amb dades del backend
   if (card?.node === 'node_6') {
