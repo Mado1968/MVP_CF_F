@@ -5,6 +5,7 @@ import WelcomePage  from './pages/WelcomePage'
 import FlowPage     from './pages/FlowPage'
 import SafetyPage   from './pages/SafetyPage'
 import ClosingPage  from './pages/ClosingPage'
+import WelcomePage  from './pages/WelcomePage'
 
 export default function App() {
   return (
