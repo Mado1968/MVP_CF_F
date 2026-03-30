@@ -55,6 +55,24 @@ export default function FlowPage() {
   if (card?.node === 'route_d') { navigate('/safety'); return null }
   if (card?.node === 'route_b') { navigate('/safety'); return null }
   if (card?.node === 'node_8')  { navigate('/done');    return null }
+  if (card?.node === 'node_5') {
+  return (
+    <main className="min-h-screen flex items-center
+      justify-center px-4 bg-gray-50">
+      <div className="w-full max-w-md">
+        <div className="bg-white rounded-2xl border
+          border-gray-200 p-8 mt-6">
+          <p className="text-lg font-medium text-gray-900 mb-8">
+            Fins a quin punt et descriu bé el que hem vist?
+          </p>
+          <ConfidenceCard
+            onAnswer={(resp) => answer(resp.question_id, resp)}
+          />
+        </div>
+      </div>
+    </main>
+  )
+}
 
   // Node 6 — cas especial: renderitza ProposalCard amb dades del backend
   if (card?.node === 'node_6') {
