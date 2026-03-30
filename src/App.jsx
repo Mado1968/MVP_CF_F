@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { SessionProvider } from './context/SessionContext'
-import SafetyExit   from './components/SafetyExit'
+import SafetyExit   from './components/cards/layout/SafetyExit'
 import WelcomePage  from './pages/WelcomePage'
 import FlowPage     from './pages/FlowPage'
 import SafetyPage   from './pages/SafetyPage'
