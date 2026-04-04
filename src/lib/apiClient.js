@@ -1,5 +1,4 @@
 const BASE = import.meta.env.VITE_API_URL
-console.log('API base URL:', BASE);
 export async function apiCall(path, options = {}) {
   const res = await fetch(`${BASE}/api${path}`, {
     headers: { 'Content-Type': 'application/json' },
