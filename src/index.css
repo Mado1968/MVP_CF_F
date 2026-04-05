@@ -2,7 +2,7 @@
    CONFLICTFLOW — Design System
    index.css · React + Vite
    ============================================================ */
-
+@import "tailwindcss";
 /* ── Google Fonts import ── */
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
 
