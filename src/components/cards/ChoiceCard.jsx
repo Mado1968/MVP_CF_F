@@ -1,3 +1,6 @@
+
+import { useState } from 'react'
+
 export default function ChoiceCard({ question, onAnswer }) {
   const [selected, setSelected] = useState(null)
   return (
