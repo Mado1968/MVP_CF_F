@@ -4,16 +4,17 @@ import { useSession } from '../context/SessionContext'
 
 const LOCALES = [
   { value: 'ca', label: 'Català' },
-  { value: 'es', label: 'Castellano' },
+  { value: 'es', label: 'Español' },
   { value: 'en', label: 'English' },
 ]
 
 export default function WelcomePage() {
   const { startSession, sessionId } = useSession()
-  const navigate  = useNavigate()
-  const [locale,   setLocale]   = useState('ca')
-  const [loading,  setLoading]  = useState(false)
-  const [error,    setError]    = useState(null)
+  const navigate = useNavigate()
+  const [locale, setLocale] = useState('ca')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [showLanguageSelector, setShowLanguageSelector] = useState(false)
 
   const handleStart = async () => {
     setLoading(true)
@@ -32,108 +33,109 @@ export default function WelcomePage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center
-      justify-center px-4 bg-gray-50">
-      <div className="w-full max-w-md flex flex-col gap-6">
+    <main className="relative min-h-screen w-full flex flex-col items-center px-6 py-12 gradient-bg">
+      {/* Top Section: Logo and Name side by side */}
+      <header className="w-full max-w-md flex items-center justify-center gap-4 mb-10">
+        <img
+          alt="ConflictFlow Logo"
+          className="h-12 w-12 object-contain rounded-xl shadow-lg"
+          src="https://lh3.googleusercontent.com/aida/ADBb0ugukEkfn9BONO0L_0Wvg-73DZ62ZdA0yK7K0yvu6hx0uyTW-0k0yin75Y5HvRt9OTCzpbgbs_KDVqKd8E4DXmdIjRiX8pMpJyyZpMoyEFwZyMYjWKyH3orswnJnt2hoB9NkYFd_4WCGOp8VRORiU9yDMB5PuWN9orVrD_PxmhIxekIwf0o-FnkVqZ4UNE-Ni2X-1Ov7lg4djiES7edyc9AaZJQjEYjVLS-7vHi1ksamE7RnxOyyfvYuTctUqxJyfM8sJGgFd7le6lU"
+        />
+        <h1 className="font-headline font-extrabold text-3xl tracking-tight text-white">
+          ConflictFlow
+        </h1>
+      </header>
 
-        {/* Capçalera */}
-        <div className="flex flex-col gap-2">
-          <h1 className="text-2xl font-medium text-gray-900">
-            ConflictFlow
-          </h1>
-          <p className="text-sm text-gray-400 leading-relaxed">
-            T'ajuda a posar ordre en una situació de conflicte
-            i a veure amb més claredat com afrontar-la.
-          </p>
-        </div>
+      {/* Main Intro Text */}
+      <section className="w-full max-w-md text-center mb-10">
+        <p className="text-white text-xl font-medium leading-relaxed drop-shadow-sm px-2">
+          T'ajuda a posar ordre en una situació de conflicte i a veure amb més claredat com afrontar-la.
+        </p>
+      </section>
 
-        {/* Marc d'ús */}
-        <div className="bg-white rounded-2xl border
-          border-gray-200 p-6 flex flex-col gap-3">
-          <p className="text-sm font-medium text-gray-700">
-            Abans de començar
-          </p>
-          <ul className="flex flex-col gap-2">
-            {[
-              'No substitueix teràpia ni assessorament legal.',
-              'T\'acompanya pas a pas per entendre el que passa.',
-              'Si detectem risc, et mostrarem opcions de suport.',
-              'Pots sortir en qualsevol moment.',
-            ].map((text, i) => (
-              <li key={i} className="flex items-start gap-2
-                text-sm text-gray-500">
-                <span className="mt-1 w-1.5 h-1.5 rounded-full
-                  bg-gray-300 flex-shrink-0" />
-                {text}
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* "Abans de començar" Section */}
+      <section className="w-full max-w-md glass-panel rounded-2xl p-6 mb-12">
+        <h2 className="font-headline font-bold text-white text-lg mb-4 flex items-center gap-2">
+          <span className="material-symbols-outlined text-white">info</span>
+          Abans de començar
+        </h2>
+        <ul className="space-y-4">
+          <li className="flex items-start gap-3">
+            <span className="material-symbols-outlined text-white/80 text-lg mt-0.5">verified_user</span>
+            <p className="text-white/90 text-sm leading-snug">No substitueix teràpia ni assessorament legal.</p>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="material-symbols-outlined text-white/80 text-lg mt-0.5">map</span>
+            <p className="text-white/90 text-sm leading-snug">T'acompanya pas a pas per entendre el que passa.</p>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="material-symbols-outlined text-white/80 text-lg mt-0.5">support_agent</span>
+            <p className="text-white/90 text-sm leading-snug">Si detectem risc, et mostrarem opcions de suport.</p>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="material-symbols-outlined text-white/80 text-lg mt-0.5">logout</span>
+            <p className="text-white/90 text-sm leading-snug">Pots sortir en qualsevol moment.</p>
+          </li>
+        </ul>
+      </section>
 
-        {/* Selecció d'idioma */}
-        <div className="flex flex-col gap-2">
-          <p className="text-xs font-medium text-gray-400
-            uppercase tracking-wide">
-            Idioma
-          </p>
-          <div className="grid grid-cols-3 gap-2">
-            {LOCALES.map(loc => (
-              <button key={loc.value}
-                onClick={() => setLocale(loc.value)}
-                className={`py-2.5 rounded-xl border text-sm
-                  font-medium transition-all duration-150
-                  ${locale === loc.value
-                    ? 'border-gray-800 bg-gray-50 text-gray-900'
-                    : 'border-gray-200 text-gray-400 hover:border-gray-300'
-                  }`}
-              >
-                {loc.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Sessió existent */}
+      {/* Primary Action */}
+      <div className="mt-auto w-full max-w-md flex flex-col items-center gap-8">
         {sessionId && (
-          <div className="bg-white rounded-2xl border
-            border-gray-200 p-4 flex items-center
-            justify-between gap-4">
-            <p className="text-sm text-gray-500">
-              Tens una sessió en curs
-            </p>
-            <button
-              onClick={handleResume}
-              className="text-sm font-medium text-gray-900
-                border border-gray-300 px-4 py-2 rounded-xl
-                hover:bg-gray-50 transition-colors flex-shrink-0"
-            >
-              Reprendre
-            </button>
-          </div>
+          <button
+            onClick={handleResume}
+            className="w-full flex items-center justify-center gap-3 bg-white/20 text-white font-headline font-bold text-lg px-12 py-4 rounded-full backdrop-blur-md border border-white/30 transition-all duration-300 hover:bg-white/30 active:scale-95 mb-[-20px]"
+          >
+            <span>Reprendre sessió</span>
+          </button>
         )}
 
-        {/* Error */}
-        {error && (
-          <p className="text-sm text-red-500 text-center">
-            {error}
-          </p>
-        )}
-
-        {/* Botó principal */}
         <button
           onClick={handleStart}
           disabled={loading}
-          className={`w-full py-4 rounded-xl text-sm
-            font-medium transition-all duration-150
-            ${loading
-              ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
-              : 'bg-gray-900 text-white hover:bg-gray-700'
-            }`}
+          className="group relative w-full flex items-center justify-center gap-3 bg-white text-primary font-headline font-bold text-lg px-12 py-5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50"
         >
-          {loading ? 'Iniciant...' : 'Començar'}
+          <span>{loading ? 'Iniciant...' : 'Començar'}</span>
+          <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
         </button>
 
+        {/* Language selector */}
+        <div className="relative">
+          <button
+            onClick={() => setShowLanguageSelector(!showLanguageSelector)}
+            className="flex items-center gap-2 text-white/80 font-medium hover:text-white transition-colors py-2"
+          >
+            <span className="material-symbols-outlined text-xl">language</span>
+            <span className="text-sm">Idioma ({LOCALES.find(l => l.value === locale)?.label})</span>
+            <span className="material-symbols-outlined text-lg">expand_more</span>
+          </button>
+
+          {showLanguageSelector && (
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-xl p-2 min-w-[120px] z-50">
+              {LOCALES.map(loc => (
+                <button
+                  key={loc.value}
+                  onClick={() => {
+                    setLocale(loc.value);
+                    setShowLanguageSelector(false);
+                  }}
+                  className={`w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    locale === loc.value ? 'bg-primary/10 text-primary' : 'text-on-surface hover:bg-background'
+                  }`}
+                >
+                  {loc.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
+
+      {error && (
+        <p className="text-white text-sm mt-4 bg-error/20 px-4 py-2 rounded-full backdrop-blur-md">
+          {error}
+        </p>
+      )}
     </main>
   )
 }
