@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSession } from '../context/SessionContext'
+import logoImage from '../assets/Logo_Transp_ConflictFlow_Small.png'
 
 const LOCALES = [
   { value: 'ca', label: 'Català' },
@@ -39,7 +40,7 @@ export default function WelcomePage() {
         <img
           alt="ConflictFlow Logo"
           className="h-20 w-20 object-contain rounded-xl shadow-lg"
-          src="https://lh3.googleusercontent.com/aida/ADBb0ugukEkfn9BONO0L_0Wvg-73DZ62ZdA0yK7K0yvu6hx0uyTW-0k0yin75Y5HvRt9OTCzpbgbs_KDVqKd8E4DXmdIjRiX8pMpJyyZpMoyEFwZyMYjWKyH3orswnJnt2hoB9NkYFd_4WCGOp8VRORiU9yDMB5PuWN9orVrD_PxmhIxekIwf0o-FnkVqZ4UNE-Ni2X-1Ov7lg4djiES7edyc9AaZJQjEYjVLS-7vHi1ksamE7RnxOyyfvYuTctUqxJyfM8sJGgFd7le6lU"
+          src={logoImage}
         />
         <h1 className="font-headline font-extrabold text-3xl tracking-tight text-white">
           ConflictFlow
@@ -139,3 +140,4 @@ export default function WelcomePage() {
     </main>
   )
 }
+
