@@ -38,7 +38,7 @@ export default function WelcomePage() {
       <header className="w-full max-w-md flex items-center justify-center gap-4 mb-10">
         <img
           alt="ConflictFlow Logo"
-          className="h-12 w-12 object-contain rounded-xl shadow-lg"
+          className="h-20 w-20 object-contain rounded-xl shadow-lg"
           src="https://lh3.googleusercontent.com/aida/ADBb0ugukEkfn9BONO0L_0Wvg-73DZ62ZdA0yK7K0yvu6hx0uyTW-0k0yin75Y5HvRt9OTCzpbgbs_KDVqKd8E4DXmdIjRiX8pMpJyyZpMoyEFwZyMYjWKyH3orswnJnt2hoB9NkYFd_4WCGOp8VRORiU9yDMB5PuWN9orVrD_PxmhIxekIwf0o-FnkVqZ4UNE-Ni2X-1Ov7lg4djiES7edyc9AaZJQjEYjVLS-7vHi1ksamE7RnxOyyfvYuTctUqxJyfM8sJGgFd7le6lU"
         />
         <h1 className="font-headline font-extrabold text-3xl tracking-tight text-white">
