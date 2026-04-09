@@ -39,7 +39,7 @@ export default function WelcomePage() {
       <header className="w-full max-w-md flex items-center justify-center gap-4 mb-10">
         <img
           alt="ConflictFlow Logo"
-          className="h-20 w-20 object-contain rounded-xl shadow-lg"
+          className="h-28 w-28 object-contain rounded-xl shadow-lg"
           src={logoImage}
         />
         <h1 className="font-headline font-extrabold text-3xl tracking-tight text-white">
