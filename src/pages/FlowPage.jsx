@@ -10,7 +10,7 @@ import ConfidenceCard from '../components/cards/ConfidenceCard'
 import ProposalCard   from '../components/cards/ProposalCard'
 import CheckinCard    from '../components/cards/CheckinCard'
 import ClosingCard    from '../components/cards/ClosingCard'
-import ProgressBar from '../components/layout/ProgressBar'
+import ProgressBar from '../components/cards/layout/ProgressBar'
 
 const CARD_MAP = {
   scale:      ScaleCard,
