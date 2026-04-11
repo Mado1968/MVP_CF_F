@@ -67,6 +67,7 @@ export default function FlowPage() {
   if (card.node === 'node_5') {
     return (
       <LayoutWrapper title="Avaluació de confiança">
+        <ProgressBar step={card.step} block={card.block} total={card.total} />
         <p className="text-lg font-medium text-on-surface mb-8">
           Fins a quin punt et descriu bé el que hem vist?
         </p>
@@ -78,6 +79,7 @@ export default function FlowPage() {
   if (card.node === 'node_6') {
     return (
       <LayoutWrapper title="Proposta">
+        <ProgressBar step={card.step} block={card.block} total={card.total} />
         <p className="text-lg font-medium text-on-surface mb-8">
           Què et seria més útil ara mateix?
         </p>
@@ -89,6 +91,7 @@ export default function FlowPage() {
   if (card.node === 'node_7') {
     return (
       <LayoutWrapper title="Check-in">
+        <ProgressBar step={card.step} block={card.block} total={card.total} />
         <p className="text-lg font-medium text-on-surface mb-8">Com ha anat?</p>
         <CheckinCard onAnswer={sendCheckin} />
       </LayoutWrapper>
