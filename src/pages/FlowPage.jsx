@@ -112,8 +112,8 @@ export default function FlowPage() {
         {/* TopAppBar */}
         <header className="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm shadow-blue-900/5 flex justify-between items-center px-6 py-4">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-blue-700 dark:text-blue-400">spa</span>
-            <h1 className="font-manrope font-bold text-lg tracking-tight text-blue-700 dark:text-blue-400">Triage Situacional</h1>
+            <span className="material-symbols-outlined text-blue-700 dark:text-blue-400"></span>
+            <h1 className="font-manrope font-bold text-lg tracking-tight text-blue-700 dark:text-blue-400">ConflictFlow</h1>
           </div>
           <button
             onClick={safeExit}
