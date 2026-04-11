@@ -38,7 +38,7 @@ export default function RouteBPage() {
             onClick={safeExit}
             className="bg-primary text-white rounded-full px-5 py-2 font-bold text-sm hover:opacity-80 transition-opacity active:scale-95 duration-200"
           >
-            Safe Exit
+            SORTIR
           </button>
         </div>
       </header>

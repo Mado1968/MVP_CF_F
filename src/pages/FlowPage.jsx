@@ -123,7 +123,7 @@ export default function FlowPage() {
             onClick={safeExit}
             className="bg-error/10 hover:bg-error/20 text-error px-4 py-2 rounded-full font-manrope font-bold text-sm tracking-tight transition-all active:scale-95"
           >
-            Safe Exit
+            SORTIR
           </button>
         </header>
 

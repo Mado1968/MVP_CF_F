@@ -31,7 +31,7 @@ export default function SafetyPage() {
           onClick={safeExit}
           className="bg-[#E50522] text-white px-5 py-2 rounded-full font-headline font-black text-sm tracking-wide shadow-lg active:scale-95 transition-all"
         >
-          Safe Exit
+          SORTIDA
         </button>
       </header>
 

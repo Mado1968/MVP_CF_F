@@ -23,7 +23,7 @@ export default function RouteCPage() {
             onClick={safeExit}
             className="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 px-4 py-2 rounded-full text-blue-700 dark:text-blue-400 font-bold transition-colors active:scale-95 duration-200"
           >
-            Safe Exit
+            SORTIDA
           </button>
         </nav>
       </header>

@@ -17,7 +17,7 @@ export default function RouteAPage() {
           onClick={safeExit}
           className="text-slate-500 font-manrope font-bold text-lg tracking-tight hover:opacity-80 transition-opacity active:scale-95 duration-200"
         >
-          Safe Exit
+          SORTIR
         </button>
       </header>
 
