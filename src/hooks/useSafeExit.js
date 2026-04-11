@@ -6,7 +6,7 @@ export function useSafeExit() {
   const safeExit = () => {
     clearSession()
     localStorage.clear()
-    window.location.replace('https://www.google.com')
+    window.location.replace('https://mvp-cf-f.vercel.app/')
   }
 
   return safeExit
