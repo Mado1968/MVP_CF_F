@@ -10,6 +10,7 @@ import ConfidenceCard from '../components/cards/ConfidenceCard'
 import ProposalCard   from '../components/cards/ProposalCard'
 import CheckinCard    from '../components/cards/CheckinCard'
 import ClosingCard    from '../components/cards/ClosingCard'
+import ProgressBar from '../components/layout/ProgressBar'
 
 const CARD_MAP = {
   scale:      ScaleCard,
@@ -153,7 +154,17 @@ export default function FlowPage() {
             </div>
 
             {/* Progress Information */}
-            <div className="mt-12 flex flex-col items-center gap-4">
+            
+<div className="mt-12 w-full max-w-xs mx-auto">
+  <ProgressBar
+    step={card.step}
+    block={card.block}
+    total={card.total}
+  />
+</div>
+</div>
+            
+           {/* <div className="mt-12 flex flex-col items-center gap-4">
               <div className="w-full max-w-xs bg-surface-container-high h-2 rounded-full overflow-hidden">
                 <div
                   className="bg-secondary h-full transition-all duration-1000"
@@ -164,7 +175,7 @@ export default function FlowPage() {
                 {card.currentQuestionIndex || 0} de {card.totalQuestions || 16} preguntes completades
               </span>
             </div>
-          </div>
+          </div>*/}
         </main>
 
         {/* BottomNavBar */}

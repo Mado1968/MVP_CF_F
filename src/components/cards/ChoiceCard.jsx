@@ -22,3 +22,13 @@ export default function ChoiceCard({ question, onAnswer }) {
     </div>
   )
 }
+/*
+{question.options.map(opt => (
+  <button key={opt}
+    onClick={() => { ... }}
+    className="..."
+  >
+    {question.labels?.[opt] ?? opt}
+  </button>
+))}
+*/
