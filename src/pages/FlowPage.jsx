@@ -99,8 +99,8 @@ export default function FlowPage() {
   }
 
   // Triage / General Flow
-  if (card.questions && card.questions.length > 0) {
-    const [currentQ] = card.questions
+  if (card.question && card.question.length > 0) {
+    const [currentQ] = card.question
     const CardComponent = CARD_MAP[currentQ.type]
 
     if (!CardComponent) {
