@@ -28,7 +28,7 @@ export function useFlow() {
     if (result.nodeComplete) {
       await fetchNext()
     } else {
-      setCard(result)
+      setCard(prev => ({ ...prev, ...result }))
     }
     return result
   }
