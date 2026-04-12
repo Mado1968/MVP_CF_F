@@ -25,7 +25,11 @@ export function useFlow() {
       method: 'POST',
       body: JSON.stringify({ question_id: questionId, ...response })
     })
-    if (result.nodeComplete) await fetchNext()
+    if (result.nodeComplete) {
+      await fetchNext()
+    } else {
+      setCard(result)
+    }
     return result
   }
 
