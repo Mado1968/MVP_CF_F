@@ -47,6 +47,9 @@ export default function FlowPage() {
     }
   }, [card?.node, fetchProposal, proposal])
 
+  // If nodeComplete was false, card might still be from previous fetchNext but with updated data.
+  // We need to ensure that if card.question is present, we render the general flow.
+
   if (loading) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-background">
@@ -64,41 +67,6 @@ export default function FlowPage() {
   }
 
   if (!card) return null;
-
-  // Render components based on node
-  if (card.node === 'node_5') {
-    return (
-      <LayoutWrapper title="Avaluació de confiança">
-        <ProgressBar step={card.step} block={card.block} total={card.total} />
-        <p className="text-lg font-medium text-on-surface mb-8">
-          Fins a quin punt et descriu bé el que hem vist?
-        </p>
-        <ConfidenceCard onAnswer={(resp) => answer(resp.question_id, resp)} />
-      </LayoutWrapper>
-    )
-  }
-
-  if (card.node === 'node_6') {
-    return (
-      <LayoutWrapper title="Proposta">
-        <ProgressBar step={card.step} block={card.block} total={card.total} />
-        <p className="text-lg font-medium text-on-surface mb-8">
-          Què et seria més útil ara mateix?
-        </p>
-        <ProposalCard proposal={proposal} onAnswer={(resp) => answer('q6_need', resp)} />
-      </LayoutWrapper>
-    )
-  }
-
-  if (card.node === 'node_7') {
-    return (
-      <LayoutWrapper title="Check-in">
-        <ProgressBar step={card.step} block={card.block} total={card.total} />
-        <p className="text-lg font-medium text-on-surface mb-8">Com ha anat?</p>
-        <CheckinCard onAnswer={sendCheckin} />
-      </LayoutWrapper>
-    )
-  }
 
   // Triage / General Flow
   if (card.question) {
@@ -203,18 +171,85 @@ export default function FlowPage() {
     )
   }
 
-  return null
+  // Render components based on node if no specific question
+  if (card.node === 'node_5') {
+    return (
+      <LayoutWrapper title="Avaluació de confiança" card={card}>
+        <p className="text-lg font-medium text-on-surface mb-8">
+          Fins a quin punt et descriu bé el que hem vist?
+        </p>
+        <ConfidenceCard onAnswer={(resp) => answer(resp.question_id, resp)} />
+      </LayoutWrapper>
+    )
+  }
+
+  if (card.node === 'node_6') {
+    return (
+      <LayoutWrapper title="Proposta" card={card}>
+        <p className="text-lg font-medium text-on-surface mb-8">
+          Què et seria més útil ara mateix?
+        </p>
+        <ProposalCard proposal={proposal} onAnswer={(resp) => answer('q6_need', resp)} />
+      </LayoutWrapper>
+    )
+  }
+
+  if (card.node === 'node_7') {
+    return (
+      <LayoutWrapper title="Check-in" card={card}>
+        <p className="text-lg font-medium text-on-surface mb-8">Com ha anat?</p>
+        <CheckinCard onAnswer={sendCheckin} />
+      </LayoutWrapper>
+    )
+  }
+
+  return (
+    <main className="min-h-screen flex items-center justify-center bg-background">
+      <div className="text-center">
+        <p className="text-sm text-error mb-4">Node no gestionat: {card.node}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="text-primary underline text-sm"
+        >
+          Reintentar
+        </button>
+      </div>
+    </main>
+  )
 }
 
-function LayoutWrapper({ title, children }) {
+function LayoutWrapper({ title, card, children }) {
+  const safeExit = useSafeExit()
+
   return (
-    <main className="bg-background min-h-screen text-on-surface flex flex-col items-center justify-center px-4">
-       <div className="w-full max-w-md">
-          <div className="bg-white rounded-2xl border border-gray-200 p-8 mt-6">
-            <h2 className="text-sm font-bold text-primary uppercase tracking-widest mb-4">{title}</h2>
-            {children}
-          </div>
-       </div>
+    <main className="bg-background min-h-screen text-on-surface flex flex-col">
+      <header className="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm shadow-blue-900/5 flex justify-between items-center px-6 py-4">
+        <div className="flex items-center gap-3">
+          <h1 className="font-manrope font-bold text-lg tracking-tight text-blue-700 dark:text-blue-400">ConflictFlow</h1>
+        </div>
+        <button
+          onClick={safeExit}
+          className="bg-error/10 hover:bg-error/20 text-error px-4 py-2 rounded-full font-manrope font-bold text-sm tracking-tight transition-all active:scale-95"
+        >
+          SORTIR
+        </button>
+      </header>
+
+      <main className="flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-32">
+        <div className="w-full max-w-2xl text-center mb-8">
+           <h2 className="text-sm font-bold text-primary uppercase tracking-widest mb-4">{title}</h2>
+        </div>
+
+        <div className="w-full max-w-2xl bg-white rounded-2xl border border-gray-200 p-8 md:p-12 shadow-xl shadow-primary/5">
+          {children}
+
+          {card && (
+            <div className="mt-12 w-full max-w-xs mx-auto">
+              <ProgressBar step={card.step} block={card.block} total={card.total} />
+            </div>
+          )}
+        </div>
+      </main>
     </main>
   )
 }
