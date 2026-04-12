@@ -14,7 +14,7 @@ export default function ChoiceCard({ question, onAnswer }) {
           className={`w-full text-left px-5 py-4 rounded-xl
             border text-sm transition-all duration-150
             ${selected === opt
-              ? 'bg-brand-50 border-brand-400 text-brand-800'
+              ? 'border-primary-container bg-primary-fixed/30 text-primary-container'
               : 'border-gray-200 text-gray-600 hover:border-brand-200'
             }`}
         >{question.labels?.[opt] ?? opt}</button>

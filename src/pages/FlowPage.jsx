@@ -69,7 +69,7 @@ export default function FlowPage() {
   if (!card) return null;
 
   // Si el node actual és un node de redirecció o el flux ha acabat, mostrem loading mentre el useEffect redirigeix
-  const redirectNodes = ['route_a', 'route_b', 'route_c', 'route_d', 'node_8']
+  const redirectNodes = ['route_a', 'route_b', 'route_c', 'route_d']
   if (card.done || redirectNodes.includes(card.node)) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-background">
@@ -122,6 +122,7 @@ export default function FlowPage() {
             <div className="bg-brand-gradient rounded-xl p-1 shadow-2xl shadow-primary/10">
               <div className="bg-surface-container-lowest rounded-[2.8rem] p-8 md:p-12">
                 <CardComponent
+                  key={currentQ.id}
                   question={currentQ}
                   sessionId={sessionId}
                   onAnswer={(resp) => answer(currentQ.id, resp)}
