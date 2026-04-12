@@ -14,7 +14,7 @@ export default function YesNoCard({ onAnswer }) {
         onClick={() => handleSelect('no')}
         className={`py-4 rounded-xl border text-sm font-medium transition-all duration-150
           ${selected === 'no'
-            ? 'bg-brand-50 border-brand-400 text-brand-800'
+            ? 'border-primary-container bg-primary-fixed/30 text-primary-container'
             : 'border-gray-200 text-gray-600 hover:border-brand-200'
           }`}
       >
@@ -24,7 +24,7 @@ export default function YesNoCard({ onAnswer }) {
         onClick={() => handleSelect('yes')}
         className={`py-4 rounded-xl border text-sm font-medium transition-all duration-150
           ${selected === 'yes'
-            ? 'bg-brand-50 border-brand-400 text-brand-800'
+            ? 'border-primary-container bg-primary-fixed/30 text-primary-container'
             : 'border-gray-200 text-gray-600 hover:border-brand-200'
           }`}
       >

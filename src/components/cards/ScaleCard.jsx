@@ -29,12 +29,12 @@ export default function ScaleCard({ question, onAnswer }) {
             onClick={() => handleSelect(n)}
             className={`flex-1 group flex flex-col items-center p-6 rounded-2xl border transition-all duration-150 active:scale-95 ${
               selected === n
-                ? 'bg-brand-50 border-brand-400 text-brand-800'
+                ? 'border-primary-container bg-primary-fixed/30 text-primary-container'
                 : 'bg-surface-container-low border-transparent hover:border-brand-200'
             }`}
           >
-            <span className={`text-2xl font-manrope font-black mb-2 ${selected === n ? 'text-brand-800' : 'text-primary'}`}>{n}</span>
-            <span className={`text-sm font-medium transition-colors ${selected === n ? 'text-brand-700' : 'text-on-surface-variant group-hover:text-primary'}`}>
+            <span className={`text-2xl font-manrope font-black mb-2 ${selected === n ? 'text-primary-container' : 'text-primary'}`}>{n}</span>
+            <span className={`text-sm font-medium transition-colors ${selected === n ? 'text-primary-container' : 'text-on-surface-variant group-hover:text-primary'}`}>
               {labels[n] || ''}
             </span>
           </button>

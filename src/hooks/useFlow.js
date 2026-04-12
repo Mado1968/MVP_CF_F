@@ -21,16 +21,25 @@ export function useFlow() {
   }, [sessionId])
 
   const answer = async (questionId, response) => {
-    const result = await apiCall(`/flow/${sessionId}/answer`, {
-      method: 'POST',
-      body: JSON.stringify({ question_id: questionId, ...response })
-    })
-    if (result.nodeComplete) {
-      await fetchNext()
-    } else {
-      setCard(prev => ({ ...prev, ...result }))
+    setLoading(true)
+    setError(null)
+    try {
+      const result = await apiCall(`/flow/${sessionId}/answer`, {
+        method: 'POST',
+        body: JSON.stringify({ question_id: questionId, ...response })
+      })
+      if (result.nodeComplete) {
+        await fetchNext()
+      } else {
+        setCard(prev => ({ ...prev, ...result }))
+        setLoading(false)
+      }
+      return result
+    } catch(e) {
+      setError(e.message)
+      setLoading(false)
+      throw e
     }
-    return result
   }
 
   const fetchProposal = async () => {
