@@ -1,10 +1,13 @@
+import { useState, useEffect } from 'react'
+import { apiCall } from '../../lib/apiClient'
+
 export default function SummaryCard({ sessionId, onConfirm }) {
   const [summary, setSummary] = useState(null)
   useEffect(() => {
     apiCall(`/flow/${sessionId}/summary`).then(setSummary)
-  }, [])
+  }, [sessionId])
 
-  if (!summary) return <Spinner />
+  if (!summary) return <p className="text-sm text-outline animate-pulse text-center py-8">Carregant resum...</p>
   return (
     <div>
       <p className="text-sm text-gray-500 mb-4">

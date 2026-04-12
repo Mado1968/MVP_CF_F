@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSession } from '../context/SessionContext'
 import { useFlow } from '../hooks/useFlow'
 import { useSafeExit } from '../hooks/useSafeExit'
 import ScaleCard      from '../components/cards/ScaleCard'
@@ -23,6 +24,7 @@ const CARD_MAP = {
 }
 
 export default function FlowPage() {
+  const { sessionId } = useSession()
   const { card, loading, error, answer, fetchProposal, sendCheckin } = useFlow()
   const navigate = useNavigate()
   const safeExit = useSafeExit()
@@ -99,7 +101,7 @@ export default function FlowPage() {
   }
 
   // Triage / General Flow
-  if (card.question && card.question.length > 0) {
+  if (card.question) {
     const currentQ = card.question
     const CardComponent = CARD_MAP[currentQ.type]
 
@@ -143,6 +145,7 @@ export default function FlowPage() {
               <div className="bg-surface-container-lowest rounded-[2.8rem] p-8 md:p-12">
                 <CardComponent
                   question={currentQ}
+                  sessionId={sessionId}
                   onAnswer={(resp) => answer(currentQ.id, resp)}
                 />
 
