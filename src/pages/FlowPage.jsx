@@ -68,6 +68,16 @@ export default function FlowPage() {
 
   if (!card) return null;
 
+  // Si el node actual és un node de redirecció o el flux ha acabat, mostrem loading mentre el useEffect redirigeix
+  const redirectNodes = ['route_a', 'route_b', 'route_c', 'route_d', 'node_8']
+  if (card.done || redirectNodes.includes(card.node)) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-background">
+        <p className="text-sm text-outline animate-pulse">Redirigint...</p>
+      </main>
+    )
+  }
+
   // Triage / General Flow
   if (card.question) {
     const currentQ = card.question
